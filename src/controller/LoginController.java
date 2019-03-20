@@ -3,9 +3,14 @@ package controller;
 import configuration.DBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,7 +48,16 @@ public class LoginController {
     }
 
     @FXML
-    void registerAction(ActionEvent event) {
+    void registerAction(ActionEvent event) throws IOException {
+        // utworzenie stage okna nowego widoku
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/view/registerView.fxml"));
+        stage.setTitle("Panel rejestracji");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        Stage stageClosed = (Stage) tf_login.getScene().getWindow();
+        stageClosed.close();
     }
 
     DBConnector dbConnector;

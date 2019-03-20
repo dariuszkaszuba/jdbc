@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane onKeyPressed="#keyRegisterAction" prefHeight="335.0" prefWidth="333.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
+   <children>
+      <Text layoutX="81.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PANEL REJESTRACJI" wrappingWidth="210.13671875">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tf_login" layoutX="104.0" layoutY="86.0" promptText="login" />
+      <Button layoutX="104.0" layoutY="270.0" mnemonicParsing="false" onAction="#registerAction" text="zarejstruj" AnchorPane.bottomAnchor="40.0" />
+      <PasswordField fx:id="pf_password1" layoutX="104.0" layoutY="121.0" promptText="password" />
+      <PasswordField fx:id="pf_password2" layoutX="104.0" layoutY="156.0" promptText="password" />
+      <TextField fx:id="tf_name" layoutX="105.0" layoutY="193.0" promptText="imię" />
+      <TextField fx:id="tf_lastname" layoutX="104.0" layoutY="230.0" promptText="nazwisko" />
+      <Button layoutX="193.0" layoutY="269.0" mnemonicParsing="false" onAction="#clearAction" text="wyczysc" AnchorPane.bottomAnchor="40.0" />
+   </children>
+</AnchorPane>
