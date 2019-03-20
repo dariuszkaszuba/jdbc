@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import service.AlertService;
+import service.WindowService;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -73,14 +74,17 @@ public class RegisterController {
             AlertService.showAlert(Alert.AlertType.INFORMATION, "Rejestracja", "Zarejestrowano uzytkownika");
             clear();
 
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/view/loginView.fxml"));
-            stage.setTitle("Panel rejestracji");
-            stage.setScene(new Scene(root));
-            stage.show();
+//            Stage stage = new Stage();
+//            Parent root = FXMLLoader.load(getClass().getResource("/view/loginView.fxml"));
+//            stage.setTitle("Panel rejestracji");
+//            stage.setScene(new Scene(root));
+//            stage.show();
 
-            Stage stageClosed = (Stage) tf_login.getScene().getWindow();
-            stageClosed.close();
+            WindowService.showWindow("/view/loginView.fxml","Panel logowania");
+            WindowService.closeWindow(tf_login);
+
+//            Stage stageClosed = (Stage) tf_login.getScene().getWindow();
+//            stageClosed.close();
 
         } catch (NullPointerException e) {
             AlertService.showAlert(Alert.AlertType.INFORMATION, "Brak wartosci", "Uzupelnij brakujace pola");
