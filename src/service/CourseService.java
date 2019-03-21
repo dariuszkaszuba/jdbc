@@ -4,6 +4,7 @@ import configuration.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Courses;
+import model.SubmissionView;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -58,6 +59,50 @@ public class CourseService {
             courses_list.add(c);
         }
         return courses_list;
+    }
+
+    public ObservableList<SubmissionView> getAllSubmissions(int id) throws SQLException {
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(
+                "select * from submission_view where email=(select email from users where id_u="+id+")");
+        ObservableList<SubmissionView> submission_list = FXCollections.observableArrayList();
+        while (rs.next()) {
+            SubmissionView sv = new SubmissionView(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6),
+                    rs.getDate(7).toLocalDate()
+            );
+            submission_list.add(sv);
+        }
+        return submission_list;
+    }
+
+    public void saveUserOnCourse(int id_u, int id_c) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(
+                "insert into submission values (default , ?,?)"
+        );
+        ps.setInt(1,id_u);
+        ps.setInt(2,id_c);
+        ps.executeUpdate();
+    }
+
+    public void deleteSubmission(int id_s) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(
+                "delete from submission where id_s=?");
+        ps.setInt(1,id_s);
+        ps.executeUpdate();
+    }
+
+    public void updateSubmission(int id_s, int id_c) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(
+                "update submission SET id_c=? where id_s=?");
+        ps.setInt(1,id_c);
+        ps.setInt(2,id_s);
+        ps.executeUpdate();
     }
 
 }

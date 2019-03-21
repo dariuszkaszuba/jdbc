@@ -79,8 +79,6 @@ public class Courses {
 
     @Override
     public String toString() {
-        return name + '\'' +
-                 time_interval +
-                '}';
+        return "nazwa: "+name +", kategoria: "+ category+", data: "+ start_date;
     }
 }
