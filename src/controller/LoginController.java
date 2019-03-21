@@ -27,8 +27,10 @@ public class LoginController {
     @FXML
     private PasswordField tf_password;
 
+    public static int id_logged;
+
     @FXML
-    void loginAction(ActionEvent event) throws SQLException {
+    void loginAction(ActionEvent event) throws SQLException, IOException {
         ps = connection.prepareStatement("select * from users where email=? and password =?");
         ps.setString(1, tf_login.getText());
         ps.setString(2, tf_password.getText());
@@ -36,14 +38,18 @@ public class LoginController {
         //insert, update, delete. create, drop -> executeUpdate()
         ResultSet resultSet = ps.executeQuery();
         if(resultSet.next()){
-            System.out.println(resultSet.getInt(1));
-            System.out.println(resultSet.getString(2));
-            System.out.println(resultSet.getString(3));
-            System.out.println(resultSet.getString(4));
-            System.out.println(resultSet.getString(5));
-            System.out.println(resultSet.getBoolean(6));
-            System.out.println(resultSet.getString(7));
-            System.out.println(resultSet.getDate(8));
+            id_logged=resultSet.getInt(1);
+            WindowService.showWindow("/view/courseView.fxml","Formularz zapisu na kurs");
+            WindowService.closeWindow(tf_login);
+
+//            System.out.println(resultSet.getInt(1));
+//            System.out.println(resultSet.getString(2));
+//            System.out.println(resultSet.getString(3));
+//            System.out.println(resultSet.getString(4));
+//            System.out.println(resultSet.getString(5));
+//            System.out.println(resultSet.getBoolean(6));
+//            System.out.println(resultSet.getString(7));
+//            System.out.println(resultSet.getDate(8));
         } else {
             AlertService.showAlert(Alert.AlertType.INFORMATION, "Blad logowania", "Zarejstruj sie");
         }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CourseController">
+   <children>
+      <VBox layoutX="-3.0" prefHeight="596.0" prefWidth="704.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Plik">
+                  <items>
+                    <MenuItem fx:id="m_logout" mnemonicParsing="false" onAction="#logoutAction" text="Wyloguj" />
+                        <MenuItem fx:id="m_exit" mnemonicParsing="false" onAction="#exitAction" text="Wyjdz" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <GridPane prefHeight="572.0" prefWidth="704.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" prefWidth="226.6666717529297" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333282470703" minWidth="10.0" prefWidth="477.3333282470703" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="292.3333282470703" minHeight="10.0" prefHeight="73.66667175292969" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="389.3333282470703" minHeight="10.0" prefHeight="389.3333282470703" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="687.0" text="FORMULARZ ZAPISU NA KURS" textAlignment="CENTER" GridPane.columnSpan="2">
+                     <font>
+                        <Font name="System Bold" size="41.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tab_course" onMouseClicked="#selectRowAction" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <columns>
+                      <TableColumn fx:id="c_name" text="Imię" />
+                      <TableColumn fx:id="c_lastname" text="Nazwisko" />
+                        <TableColumn fx:id="c_email" text="E-mail" />
+                        <TableColumn fx:id="c_course" text="Kurs" />
+                        <TableColumn fx:id="c_trainer" text="Trener" />
+                        <TableColumn fx:id="c_date" text="Data" />
+                    </columns>
+                  </TableView>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="TOP_CENTER" prefHeight="34.0" prefWidth="230.0" text="wybierz kurs">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cb_save" prefWidth="150.0" />
+                        <Button fx:id="btn_save" mnemonicParsing="false" onAction="#saveAction" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: green;" text="zapisz się" textFill="WHITE" />
+                        <Separator prefWidth="200.0" />
+                        <Label text="zrezygnuj z kursu">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btn_delete" mnemonicParsing="false" onAction="#deleteAction" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: red;" text="wypisz się" textFill="WHITE" />
+                        <Separator prefWidth="200.0" />
+                        <Label text="zmień kurs">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cb_update" prefWidth="150.0" />
+                        <Button fx:id="btn_update" mnemonicParsing="false" onAction="#updateAction" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: blue;" text="zmień" textFill="WHITE" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label fx:id="lbl_course_count" alignment="TOP_CENTER" text="liczba dostępnych kursów:">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbl_submission_count" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="405.0" text="liczba kursów na które jesteś zapisany:">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
